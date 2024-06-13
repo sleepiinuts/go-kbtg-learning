@@ -210,7 +210,8 @@ func main() {
 	simpleJs, _ := json.MarshalIndent(s, "", "  ")
 	fmt.Println(string(simpleJs))
 
-	writeFile()
+	resp, _ := HttpRequest()
+	writeFile(resp)
 }
 
 func printEvery5() {

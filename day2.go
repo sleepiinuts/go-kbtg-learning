@@ -142,16 +142,18 @@ type Response struct {
 	Data []User
 }
 
-func HttpRequest() {
+func HttpRequest() (*Response, error) {
 	req, err := http.NewRequest(http.MethodGet, "https://gorest.co.in/public-api/users", nil)
 	if err != nil {
 		fmt.Println("err connecting: ", err)
+		return nil, err
 	}
 
 	client := http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
 		fmt.Println("err response: ", err)
+		return nil, err
 	}
 
 	defer resp.Body.Close()
@@ -160,6 +162,7 @@ func HttpRequest() {
 	err = json.NewDecoder(resp.Body).Decode(&response)
 	if err != nil {
 		fmt.Println("err decoder: ", err)
+		return nil, err
 	}
 
 	fmt.Printf("%+v\n", response.Meta)
@@ -168,9 +171,10 @@ func HttpRequest() {
 		fmt.Printf("%+v\n", d)
 	}
 
+	return &response, nil
 }
 
-func writeFile() {
+func writeFile(resp *Response) error {
 	file, err := os.OpenFile("test.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0777)
 	if err != nil {
 		log.Fatal(err)
@@ -178,7 +182,11 @@ func writeFile() {
 
 	defer file.Close()
 
-	for i := range 100 {
-		file.Write([]byte(fmt.Sprintf("%d\n", i)))
+	jsByte, err := json.Marshal(resp)
+	if err != nil {
+		return fmt.Errorf("writeFile - jsMarshal: %w", err)
 	}
+
+	file.Write(jsByte)
+	return nil
 }
