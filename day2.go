@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -182,11 +183,31 @@ func writeFile(resp *Response) error {
 
 	defer file.Close()
 
-	jsByte, err := json.Marshal(resp)
+	jsByte, err := json.MarshalIndent(resp, "", "  ")
 	if err != nil {
 		return fmt.Errorf("writeFile - jsMarshal: %w", err)
 	}
 
 	file.Write(jsByte)
+	return nil
+}
+
+func readFile() error {
+	f, err := os.Open("sample.txt")
+	if err != nil {
+		return fmt.Errorf("readFile: %w", err)
+	}
+
+	defer f.Close()
+
+	sc := bufio.NewScanner(f)
+	for sc.Scan() {
+		_, err := fmt.Println(sc.Text())
+		if err != nil {
+			return err
+		}
+
+	}
+
 	return nil
 }

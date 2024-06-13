@@ -212,6 +212,8 @@ func main() {
 
 	resp, _ := HttpRequest()
 	writeFile(resp)
+
+	readFile()
 }
 
 func printEvery5() {
