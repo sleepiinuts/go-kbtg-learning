@@ -1,5 +1,14 @@
 package main
 
+import (
+	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
+	"os"
+	"time"
+)
+
 type Number interface {
 	~int | ~int8 | ~int16 | ~int32 | ~int64 | ~float32 | ~float64
 }
@@ -68,4 +77,108 @@ type Simple struct {
 			} `xml:"KK11238I01"`
 		} `xml:"doService"`
 	} `xml:"Body"`
+}
+
+type Travel struct {
+	Attr string `xml:"Body>doService xmlns,attr"`
+}
+
+type Product struct {
+	Name       string
+	Price      float64
+	LaunchDate CustomDate
+	Date       time.Time
+}
+
+type CustomDate struct {
+	time.Time
+}
+
+const dateFormat = "2006-01-02"
+
+func (cd *CustomDate) UnmarshalJSON(data []byte) error {
+	// write your code here
+
+	str := string(data)
+
+	t, err := time.Parse(dateFormat, str[1:len(str)-1]) // --> need to remove quote first!
+	if err != nil {
+		return err
+	}
+
+	cd.Time = t
+	return nil
+}
+
+func (cd CustomDate) MarshalJSON() ([]byte, error) {
+	// write your code here
+	return json.Marshal(cd.Time.Format(dateFormat))
+
+	// fmt.Println("byte: ", []byte(fmt.Sprintf("%q", cd.Time.Format(dateFormat))))
+	// cmp, _ := json.Marshal(cd.Time.Format(dateFormat))
+	// fmt.Println("json: ", cmp)
+	// return []byte(cd.Time.Format(dateFormat)), nil --> require quoted text to work!!
+}
+
+type User struct {
+	ID     int    `json:"id"`
+	Name   string `json:"name"`
+	Email  string `json:"email"`
+	Gender string `json:"gender"`
+	Status string `json:"status"`
+}
+type Meta struct {
+	Pagination struct {
+		Total int `json:"total"`
+		Pages int `json:"pages"`
+		Page  int `json:"page"`
+		Limit int `json:"limit"`
+	} `json:"pagination"`
+}
+
+type Response struct {
+	Code int `json:"code"`
+	Meta `json:"meta"`
+	Data []User
+}
+
+func HttpRequest() {
+	req, err := http.NewRequest(http.MethodGet, "https://gorest.co.in/public-api/users", nil)
+	if err != nil {
+		fmt.Println("err connecting: ", err)
+	}
+
+	client := http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println("err response: ", err)
+	}
+
+	defer resp.Body.Close()
+
+	var response Response
+	err = json.NewDecoder(resp.Body).Decode(&response)
+	if err != nil {
+		fmt.Println("err decoder: ", err)
+	}
+
+	fmt.Printf("%+v\n", response.Meta)
+
+	for _, d := range response.Data {
+		fmt.Printf("%+v\n", d)
+	}
+
+}
+
+func writeFile() {
+	file, err := os.OpenFile("test.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0777)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer file.Close()
+
+	for i := range 100 {
+		file.Write([]byte(fmt.Sprintf("%d\n", i)))
+	}
 }

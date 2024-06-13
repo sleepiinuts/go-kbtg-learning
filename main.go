@@ -209,6 +209,8 @@ func main() {
 	fmt.Println("funcNM: ", s.Body.Service.KK11238I01.Header.FunctionName)
 	simpleJs, _ := json.MarshalIndent(s, "", "  ")
 	fmt.Println(string(simpleJs))
+
+	writeFile()
 }
 
 func printEvery5() {
