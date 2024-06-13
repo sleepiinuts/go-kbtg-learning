@@ -117,6 +117,9 @@ func main() {
 
 	e.Print()
 	e.PrintSalary()
+
+	fmt.Println(sumComparable([]int{1, 2, 3, 4, 5}))
+	fmt.Println(sumComparable([]float32{1.1, 1.2, 2.3}))
 }
 
 func printEvery5() {
