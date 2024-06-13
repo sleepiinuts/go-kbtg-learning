@@ -118,8 +118,41 @@ func main() {
 	e.Print()
 	e.PrintSalary()
 
-	fmt.Println(sumComparable([]int{1, 2, 3, 4, 5}))
-	fmt.Println(sumComparable([]float32{1.1, 1.2, 2.3}))
+	// start D2
+
+	fmt.Println(sumNumber([]int{1, 2, 3, 4, 5}))
+	fmt.Println(sumNumber([]float32{1.1, 1.2, 2.3}))
+
+	addrJs := AddressJS{AddrNo: "46/6", Road: "popular", District: "pakkret", Province: "nonthaburi", Zip: 11120}
+	byteJs, err := json.Marshal(addrJs)
+	if err != nil {
+		panic("err marshaljson")
+	}
+
+	fmt.Println(string(byteJs))
+
+	personBt := []byte(`{"name": "john", "hobbies":["watch tv", "surf internet", "read book"]}`)
+	var p1 Person
+
+	err = json.Unmarshal(personBt, &p1)
+	if err != nil {
+		panic("err unmarshal json")
+	}
+
+	fmt.Printf("%+v\n", p1)
+
+	pInf := PersonInfo{
+		FirstName: "fname",
+		LastName:  "lname",
+		Addr:      addrJs,
+	}
+
+	pInfByte, err := json.Marshal(pInf)
+	if err != nil {
+		panic("err marshal person info")
+	}
+
+	fmt.Println(string(pInfByte))
 }
 
 func printEvery5() {
