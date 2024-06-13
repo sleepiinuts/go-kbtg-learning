@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"encoding/xml"
 	"fmt"
 	"reflect"
 	"strings"
@@ -66,7 +67,7 @@ func main() {
 	fmt.Println("reassign: ", &addr2)
 
 	// fmt.Printf("addr: %v\n", addr)
-	if jstr, err := json.MarshalIndent(addr, "", "    "); err == nil {
+	if jstr, err := xml.MarshalIndent(addr, "", "    "); err == nil {
 		fmt.Println(string(jstr))
 	}
 
@@ -147,12 +148,67 @@ func main() {
 		Addr:      addrJs,
 	}
 
-	pInfByte, err := json.Marshal(pInf)
+	pInfByte, err := json.MarshalIndent(pInf, "", "  ")
 	if err != nil {
 		panic("err marshal person info")
 	}
 
 	fmt.Println(string(pInfByte))
+
+	strXML := `
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v2="test.api.com/WS/KK11238I01/v2">
+    <soapenv:Body>
+        <doService xmlns="http://test.api.com/WS/KK11238I01/v2">
+            <KK11238I01>
+                <Header>
+                    <funcNm>KK11238I01</funcNm>
+                    <rqUID>123_20180608_1430_0000001</rqUID>
+                    <rqAppId>123</rqAppId>
+                    <rqDt>2018-06-08T14:34:09.47479164+07:00</rqDt>
+                    <corrID>5543</corrID>
+                    <userId>XXO20029</userId>
+                    <terminalId>123</terminalId>
+                    <userLangPref>TH</userLangPref>
+                    <authUserId>XXO20029</authUserId>
+                    <authLevel>1</authLevel>
+                    <errorVect>
+                        <error></error>
+                    </errorVect>
+                </Header>
+                <Account>
+                    <AcctId>12345677</AcctId>
+                    <Concept1>CR To 12345677</Concept1>
+                    <Concept2></Concept2>
+                    <ExtAcctDt>2018-02-01</ExtAcctDt>
+                    <FeeAmt>0.0</FeeAmt>
+                    <ICA>123</ICA>
+                    <OperationCode>01</OperationCode>
+                    <OperationType>CR</OperationType>
+                    <SubOperationCode>7677</SubOperationCode>
+                    <SvcBranchId>2241</SvcBranchId>
+                    <TrnAmt>300</TrnAmt>
+                    <UseSvcBranchFlag>N</UseSvcBranchFlag>
+                    <ValueDt>2018-02-01</ValueDt>
+                    <AuthLevCnt></AuthLevCnt>
+                    <TellerID></TellerID>
+                    <TellerIDAuthNum></TellerIDAuthNum>
+                    <TxnCode></TxnCode>
+                    <TxnIndctcnt></TxnIndctcnt>                    
+                </Account>
+            </KK11238I01>
+        </doService>
+    </soapenv:Body>
+</soapenv:Envelope>`
+
+	var s Simple
+	err = xml.Unmarshal([]byte(strXML), &s)
+	if err != nil {
+		panic("unmarshal XML error")
+	}
+
+	fmt.Println("funcNM: ", s.Body.Service.KK11238I01.Header.FunctionName)
+	simpleJs, _ := json.MarshalIndent(s, "", "  ")
+	fmt.Println(string(simpleJs))
 }
 
 func printEvery5() {

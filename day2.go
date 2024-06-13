@@ -41,3 +41,31 @@ type PersonInfo struct {
 	LastName  string    `json:"last_name"`
 	Addr      AddressJS `json:"address"`
 }
+
+type Simple struct {
+	Body struct {
+		Service struct {
+			XMLNS      string `xml:"xmlns,attr"`
+			KK11238I01 struct {
+				Header struct {
+					FunctionName string `xml:"funcNm"`
+					RequestID    string `xml:"rqUID"`
+					RequestAppID string `xml:"rqAppId"`
+					RequestDate  string `xml:"rqDt"`
+					CorrID       string `xml:"corrID"`
+					UserID       string `xml:"userId"`
+					TerminalID   string `xml:"terminalId"`
+					Language     string `xml:"userLangPref"`
+					AuthUserID   string `xml:"authUserId"`
+					AuthLevel    string `xml:"authLevel"`
+					Error        struct {
+						Message string `xml:"error"`
+					} `xml:"errorVect"`
+				} `xml:"Header"`
+				Account struct {
+					AccountID string `xml:"AcctId"`
+				} `xml:"Account"`
+			} `xml:"KK11238I01"`
+		} `xml:"doService"`
+	} `xml:"Body"`
+}
