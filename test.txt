@@ -2,97 +2,85 @@
   "code": 200,
   "meta": {
     "pagination": {
-      "total": 3068,
-      "pages": 307,
+      "total": 2956,
+      "pages": 296,
       "page": 1,
       "limit": 10
     }
   },
   "Data": [
     {
-      "id": 102936,
-      "name": "Vidya Khan",
-      "email": "vidya_khan@osinski-gleason.example",
-      "gender": "",
-      "status": ""
-    },
-    {
-      "id": 102935,
-      "name": "Vidya Kapoor",
-      "email": "vidya_kapoor@cronin-hamill.test",
-      "gender": "",
-      "status": ""
-    },
-    {
-      "id": 102934,
-      "name": "Esha Butt",
-      "email": "butt_esha@thiel.example",
-      "gender": "",
-      "status": ""
-    },
-    {
-      "id": 102933,
-      "name": "Gemine Bharadwaj",
-      "email": "gemine_bharadwaj@rodriguez-grady.example",
-      "gender": "",
-      "status": ""
-    },
-    {
-      "id": 102929,
-      "name": "Miss Achyut Kaul",
-      "email": "achyut_kaul_miss@feeney.example",
-      "gender": "",
-      "status": ""
-    },
-    {
-      "id": 102923,
-      "name": "Siddhran Mahajan DDS",
-      "email": "siddhran_dds_mahajan@satterfield-spinka.test",
-      "gender": "",
-      "status": ""
-    },
-    {
-      "id": 102922,
-      "name": "Girish Marar",
-      "email": "marar_girish@nicolas.example",
-      "gender": "",
-      "status": ""
-    },
-    {
-      "id": 102921,
-      "name": "Keerti Iyer IV",
-      "email": "keerti_iyer_iv@wiza.example",
-      "gender": "",
-      "status": ""
-    },
-    {
-      "id": 102920,
-      "name": "Agnivesh Gupta",
-      "email": "gupta_agnivesh@wiegand.test",
-      "gender": "",
-      "status": ""
-    },
-    {
-      "id": 102919,
-      "name": "Dhyaneshwar Jha",
-      "email": "dhyaneshwar_jha@nicolas.test",
-      "gender": "",
-      "status": ""
-    }
-  ]
-}waj_amogh@koss-pollich.test",
+      "id": 6962756,
+      "name": "Lakshmi Prajapat",
+      "email": "lakshmi_prajapat@tillman-hayes.example",
       "gender": "female",
+      "status": "active"
+    },
+    {
+      "id": 6962753,
+      "name": "Brajendra Gowda",
+      "email": "gowda_brajendra@gislason.example",
+      "gender": "male",
+      "status": "inactive"
+    },
+    {
+      "id": 6962751,
+      "name": "Fr. Harinakshi Sharma",
+      "email": "sharma_fr_harinakshi@pfeffer.test",
+      "gender": "male",
+      "status": "inactive"
+    },
+    {
+      "id": 6962750,
+      "name": "Suman Patel",
+      "email": "suman_patel@bogisich.test",
+      "gender": "female",
+      "status": "active"
+    },
+    {
+      "id": 6962744,
+      "name": "Shashikala Banerjee CPA",
+      "email": "cpa_shashikala_banerjee@hills-crist.test",
+      "gender": "female",
+      "status": "inactive"
+    },
+    {
+      "id": 6962741,
+      "name": "Dr. Akshita Kaniyar",
+      "email": "akshita_kaniyar_dr@macejkovic.test",
+      "gender": "female",
+      "status": "inactive"
+    },
+    {
+      "id": 6962740,
+      "name": "Anala Saini",
+      "email": "saini_anala@bogisich-jacobs.test",
+      "gender": "male",
+      "status": "active"
+    },
+    {
+      "id": 6962739,
+      "name": "Trisha Pandey",
+      "email": "pandey_trisha@morissette.test",
+      "gender": "female",
+      "status": "inactive"
+    },
+    {
+      "id": 6962738,
+      "name": "Fr. Baidehi Talwar",
+      "email": "baidehi_talwar_fr@walter.example",
+      "gender": "male",
+      "status": "inactive"
+    },
+    {
+      "id": 6962737,
+      "name": "Sen. Oormila Saini",
+      "email": "sen_saini_oormila@cormier.test",
+      "gender": "male",
       "status": "active"
     }
   ]
-}: "male",
-      "status": "inactive"
-    }
-  ]
-}{
-  "code": 200,
-  "meta": {
-    "pagination": {
+}  "pagination": {
       "total": 2968,
       "pages": 297,
       "page": 1,

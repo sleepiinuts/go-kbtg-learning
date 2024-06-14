@@ -222,6 +222,10 @@ func main() {
 
 	readFile()
 	readCSV()
+
+	// functional option
+	h := NewHome("houseNo", "road", "province", withFloors("fl2"), withOwner("sleepy"))
+	fmt.Printf("%+v", *h)
 }
 
 func printEvery5() {

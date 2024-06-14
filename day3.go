@@ -97,3 +97,38 @@ func toStruct(str []string, agh *AgriHist) error {
 
 	return nil
 }
+
+type Home struct {
+	HouseNo     string
+	Road        string
+	Floors      string // opt
+	Province    string
+	Owner       string // opt
+	TelephoneNo string // opt
+}
+
+type option func(h *Home)
+
+func NewHome(houseNo, road, province string, opts ...option) *Home {
+	h := &Home{
+		HouseNo: houseNo, Road: road, Province: province,
+	}
+
+	for _, opt := range opts {
+		opt(h)
+	}
+
+	return h
+}
+
+func withFloors(floors string) option {
+	return func(h *Home) {
+		h.Floors = floors
+	}
+}
+
+func withOwner(owner string) option {
+	return func(h *Home) {
+		h.Owner = owner
+	}
+}
