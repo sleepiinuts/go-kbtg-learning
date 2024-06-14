@@ -7,6 +7,8 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"sync"
+	"time"
 
 	models "github.com/sleepiinuts/go-kbtg-learning/models"
 	"github.com/sleepiinuts/go-kbtg-learning/mongo"
@@ -230,6 +232,75 @@ func main() {
 
 	// mongo
 	mongo.ConnectMongo()
+
+	// concurrency
+	c1 := make(chan string)
+	c2 := make(chan string)
+
+	go func() {
+		time.Sleep(1 * time.Second)
+		c1 <- "one"
+
+	}()
+
+	go func() {
+		time.Sleep(2 * time.Second)
+		c2 <- "two"
+
+	}()
+
+	for i := 0; i < 2; i++ {
+		select {
+		case msg := <-c1:
+			fmt.Println("msg from c1: ", msg)
+		case msg := <-c2:
+			fmt.Println("msg from c2: ", msg)
+		}
+	}
+
+	fmt.Println("------")
+
+	// concurrency with HttpRequest
+	// method1
+	uris := []string{"https://gorest.co.in/public-api/users", "https://gorest.co.in/public-api/comments"}
+
+	var wg sync.WaitGroup
+
+	for ii, uu := range uris {
+		wg.Add(1)
+		go func(uu *string, ii int) {
+			defer wg.Done()
+
+			resp, err := HttpRequest(uu)
+			if err != nil {
+				return
+			}
+			fmt.Printf("Resp from C%d: %+v\n", ii+1, *resp)
+
+		}(&uu, ii)
+	}
+
+	wg.Wait()
+
+	// method2
+	done := make(chan struct{}, 2)
+	defer close(done)
+	for ii, uu := range uris {
+		go func(uu *string, ii int) {
+			defer func() { done <- struct{}{} }()
+
+			resp, err := HttpRequest(uu)
+			if err != nil {
+				return
+			}
+			fmt.Printf("Resp from X%d: %+v\n", ii+1, *resp)
+
+		}(&uu, ii)
+	}
+
+	for i := 0; i < 2; i++ {
+		<-done
+	}
 }
 
 func printEvery5() {

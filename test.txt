@@ -2,7 +2,7 @@
   "code": 200,
   "meta": {
     "pagination": {
-      "total": 2948,
+      "total": 2947,
       "pages": 295,
       "page": 1,
       "limit": 10

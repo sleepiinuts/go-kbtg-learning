@@ -166,11 +166,11 @@ func HttpRequest(uri *string) (*Response, error) {
 		return nil, err
 	}
 
-	fmt.Printf("%+v\n", response.Meta)
+	// fmt.Printf("%+v\n", response.Meta)
 
-	for _, d := range response.Data {
-		fmt.Printf("%+v\n", d)
-	}
+	// for _, d := range response.Data {
+	// 	fmt.Printf("%+v\n", d)
+	// }
 
 	return &response, nil
 }
