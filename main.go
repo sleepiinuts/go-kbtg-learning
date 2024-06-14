@@ -214,6 +214,7 @@ func main() {
 	writeFile(resp)
 
 	readFile()
+	readCSV()
 }
 
 func printEvery5() {
