@@ -1,0 +1,83 @@
+{
+  "code": 200,
+  "meta": {
+    "pagination": {
+      "total": 2948,
+      "pages": 295,
+      "page": 1,
+      "limit": 10
+    }
+  },
+  "Data": [
+    {
+      "id": 6962750,
+      "name": "Suman Patel",
+      "email": "suman_patel@bogisich.test",
+      "gender": "female",
+      "status": "active"
+    },
+    {
+      "id": 6962741,
+      "name": "Dr. Akshita Kaniyar",
+      "email": "akshita_kaniyar_dr@macejkovic.test",
+      "gender": "female",
+      "status": "inactive"
+    },
+    {
+      "id": 6962739,
+      "name": "Trisha Pandey",
+      "email": "pandey_trisha@morissette.test",
+      "gender": "female",
+      "status": "inactive"
+    },
+    {
+      "id": 6962738,
+      "name": "Fr. Baidehi Talwar",
+      "email": "baidehi_talwar_fr@walter.example",
+      "gender": "male",
+      "status": "inactive"
+    },
+    {
+      "id": 6962737,
+      "name": "Sen. Oormila Saini",
+      "email": "sen_saini_oormila@cormier.test",
+      "gender": "male",
+      "status": "active"
+    },
+    {
+      "id": 6962736,
+      "name": "Pres. Bhargava Bharadwaj",
+      "email": "bhargava_pres_bharadwaj@kovacek-schuster.test",
+      "gender": "female",
+      "status": "active"
+    },
+    {
+      "id": 6962734,
+      "name": "Brijesh Kakkar IV",
+      "email": "brijesh_iv_kakkar@thompson-parker.test",
+      "gender": "female",
+      "status": "active"
+    },
+    {
+      "id": 6962733,
+      "name": "Dayamayee Naik",
+      "email": "dayamayee_naik@daugherty-waters.test",
+      "gender": "female",
+      "status": "active"
+    },
+    {
+      "id": 6962732,
+      "name": "Prema Talwar",
+      "email": "talwar_prema@fritsch-hayes.example",
+      "gender": "female",
+      "status": "active"
+    },
+    {
+      "id": 6962731,
+      "name": "Chaitan Acharya",
+      "email": "chaitan_acharya@murphy.test",
+      "gender": "female",
+      "status": "active"
+    }
+  ]
+}

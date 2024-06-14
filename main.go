@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	models "github.com/sleepiinuts/go-kbtg-learning/models"
+	"github.com/sleepiinuts/go-kbtg-learning/mongo"
 )
 
 type Address struct {
@@ -226,6 +227,9 @@ func main() {
 	// functional option
 	h := NewHome("houseNo", "road", "province", withFloors("fl2"), withOwner("sleepy"))
 	fmt.Printf("%+v", *h)
+
+	// mongo
+	mongo.ConnectMongo()
 }
 
 func printEvery5() {
