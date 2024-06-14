@@ -143,8 +143,8 @@ type Response struct {
 	Data []User
 }
 
-func HttpRequest() (*Response, error) {
-	req, err := http.NewRequest(http.MethodGet, "https://gorest.co.in/public-api/users", nil)
+func HttpRequest(uri *string) (*Response, error) {
+	req, err := http.NewRequest(http.MethodGet, *uri, nil)
 	if err != nil {
 		fmt.Println("err connecting: ", err)
 		return nil, err

@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"encoding/xml"
+	"flag"
 	"fmt"
 	"reflect"
 	"strings"
@@ -210,7 +211,13 @@ func main() {
 	simpleJs, _ := json.MarshalIndent(s, "", "  ")
 	fmt.Println(string(simpleJs))
 
-	resp, _ := HttpRequest()
+	// day 3
+	uri := flag.String("uri", "https://gorest.co.in/public-api/users", "uri to get sample response")
+	flag.Parse()
+
+	fmt.Printf("uri: %s\n", *uri)
+
+	resp, _ := HttpRequest(uri)
 	writeFile(resp)
 
 	readFile()
