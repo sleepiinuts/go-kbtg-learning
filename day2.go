@@ -176,7 +176,7 @@ func HttpRequest(uri *string) (*Response, error) {
 }
 
 func writeFile(resp *Response) error {
-	file, err := os.OpenFile("test.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0777)
+	file, err := os.OpenFile("test.txt", os.O_CREATE|os.O_WRONLY, 0777)
 	if err != nil {
 		log.Fatal(err)
 	}

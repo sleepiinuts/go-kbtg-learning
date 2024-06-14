@@ -30,7 +30,7 @@ func readCSV() {
 
 	reader := csv.NewReader(fr)
 
-	fw, err := os.OpenFile("sample-out.csv", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0777)
+	fw, err := os.OpenFile("sample-out.csv", os.O_CREATE|os.O_WRONLY, 0777)
 	if err != nil {
 		fmt.Printf("error open for write: %v\n", err)
 		return
